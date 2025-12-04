@@ -1,6 +1,9 @@
 user = []
+admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
+
 homepage = True
 quit = False
+admintoggle = True
 
 def cekuser(x):
     for i in user:
@@ -8,15 +11,18 @@ def cekuser(x):
             return True
     return False
                 
+def adminlogin(x,y):
+    for i in admin:
+        if i['username'].lower() == x and i['password'] == y:
+            return True
+    return False
+
 def signup(x,y):
     user.append({
         'username' : x,
         'password' : y
         })
     return user
-    
-    
-    
     
 def login(x,y):
     for i in user:
@@ -25,10 +31,10 @@ def login(x,y):
     return False
        
 def logging():
-    global homepage, quit
+    global homepage, quit, admintoggle
     while True:
 
-        print("=== LOGIN/SIGN UP ==")
+        print("\n=== LOGIN/SIGN UP ==")
         print("1. Sign Up")
         print("2. Login")
         print("3. Quit")
@@ -56,12 +62,15 @@ def logging():
                 print("\nSelamat Anda Berhasil Login!")
                 homepage = False
                 return
+            elif adminlogin(nameinput,passinput):
+                print("\nSelamat Datang di Menu Admin!")
+                admintoggle = False
+            
             else:
                 print("Password Atau Username Salah!")
             break
         
         elif input1 == "3":
-            print("See You Next Time!")
             quit = True
             return         
         else:
@@ -89,12 +98,31 @@ def main_page():
 
             else:
                 print("Opsi Tidak Tersedia")
+                
+def adminmenu():
+    while True:
+        print("\n=== Menu Admin ===")
+        print("1.Cek Barang")
+        print("2.Menambah Barang")
+        print("3.Log Out")
+        
+        inputadmin1 = input("Pilih Opsi:")
+        
+        if inputadmin1 == "1":
+            pass
+        
+        else:
+            admintoggle = True
+            return
         
 while True:
     
-    if homepage == False:
+    if not homepage:
         main_page()
     elif quit == True:
+        print("See You Next Time!")
         break   
+    elif not admintoggle:
+        adminmenu()
     
     logging()    
