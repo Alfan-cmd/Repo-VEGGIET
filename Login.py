@@ -1,10 +1,11 @@
 user = []
 homepage = True
+quit = False
 
 def cekuser(x):
     for i in user:
-        if i['username'].lower() != x:
-                return True
+        if i['username'].lower() == x.lower():
+            return True
     return False
                 
 def signup(x,y):
@@ -19,52 +20,78 @@ def login(x,y):
         if i['username'].lower() == x.lower() and i['password'] == y:
             return True
     return False
-            
-    
-# masuk=True
-while True:
+       
+def logging():
+    global homepage, quit
+    while True:
 
-    print("=== LOGIN/SIGN UP ==")
-    print("1. Sign Up")
-    print("2. Login")
-    print("3. Quit")
-    input1 = input("Pilih Opsi:")
-    
-    if input1 == "1":
-        print("\n=== SIGN UP ===")
-        while True:
-            SUname = input("Masukan Username:")
-            SUpass = input("Masukan Password:")
-            
-            if cekuser(SUname):
-                print("Username Telah Dipakai!")
-            else:
-                signup(SUname,SUpass)
-                print("Selamat Akun Anda Berhasil Dibuat!")
-                break
-            
-            
-            
+        print("=== LOGIN/SIGN UP ==")
+        print("1. Sign Up")
+        print("2. Login")
+        print("3. Quit")
+        input1 = input("Pilih Opsi:")
         
+        if input1 == "1":
+            print("\n=== SIGN UP ===")
+            while True:
+                SUname = input("Masukan Username:")
+                SUpass = input("Masukan Password:")
+                
+                if cekuser(SUname):
+                    print("Username Telah Dipakai!")
+                else:
+                    signup(SUname,SUpass)
+                    print("Selamat Akun Anda Berhasil Dibuat!")
+                    break
+                
+        elif input1 == "2":
+            print("\n=== LOGIN ===")
         
-    elif input1 == "2":
-        print("\n=== LOGIN ===")
-        while True:
             nameinput = input("Username:")
             passinput = input("Password:")
             if login(nameinput, passinput):
-                print("Selamat Anda Berhasil Login")
+                print("\nSelamat Anda Berhasil Login!")
                 homepage = False
-                break
+                return
             else:
                 print("Password Atau Username Salah!")
+            break
+        
+        elif input1 == "3":
+            print("See You Next Time!")
+            quit = True
+            return         
+        else:
+            print("\nOpsi Tidak Tersedia")
     
-    elif input1 == "3":
-        break
+def main_page():
+    global homepage
+    if not homepage:
+        while True:
+            print("\n=== Homepage ===")
+            print("1.Subscription")
+            print("2.Status")
+            print("3.Log Out")
+            input2 = input("Pilih Opsi:")
+            
+            if input2 == "1":
+                break
+            
+            elif input2 == "2":
+                break
+            
+            elif input2 == "3":
+                homepage = True
+                return
+
+            else:
+                print("Opsi Tidak Tersedia")
+        
+while True:
     
-if not homepage:
-    while True:
-        pass
+    if homepage == False:
+        main_page()
+    elif quit == True:
+        break   
     
-else:
-    print("See You Next Time :)")
+    logging()    
