@@ -1,0 +1,51 @@
+kode,nama,stok
+SAY001,bayam,25
+SAY002,kangkung,30
+SAY003,sawi hijau,20
+SAY004,brokoli,15
+SAY005,kembang kol,12
+SAY006,wortel,40
+SAY007,buncis,18
+SAY008,kol,22
+SAY009,selada,14
+SAY010,timun,35
+SAY011,terong,16
+SAY012,labu siam,10
+SAY013,tomat,50
+SAY014,paprika,8
+SAY015,kentang,60
+BUA001,apel,40
+BUA002,pisang,55
+BUA003,jeruk,30
+BUA004,mangga,20
+BUA005,pepaya,12
+BUA006,semangka,7
+BUA007,melon,9
+BUA008,alpukat,18
+BUA009,anggur,25
+BUA010,stroberi,10
+BIJ001,beras,100
+BIJ002,gandum,60
+BIJ003,jagung,45
+BIJ004,oat,35
+BIJ005,quinoa,20
+BIJ006,barley,15
+KAC001,kacang merah,25
+KAC002,kacang tanah,40
+KAC003,kacang kedelai,50
+KAC004,kacang polong,22
+KAC005,almond,15
+KAC006,mete,12
+KAC007,pistachio,10
+OLA001,tahu,50
+OLA002,tempe,45
+OLA003,susu kedelai,30
+OLA004,edamame,20
+OLA005,tepung tapioka,18
+OLA006,tepung terigu,40
+OLA007,miso,8
+OLA008,oncom,12
+JAM001,jamur tiram,25
+JAM002,jamur kancing,30
+JAM003,jamur shitake,12
+JAM004,jamur enoki,20

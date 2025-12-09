@@ -9,20 +9,26 @@ homepage = True
 adminmenu = True
 def cekuser(x):
     for i in user:
-        if i['username'].lower() != x:
-                return True
+        if i['username'].lower() == input_username.lower():
+            return True
     return False
                 
-def signup(x,y):
+def adminlogin(username,password):
+    for i in admin:
+        if i['username'].lower() == username and i['password'] == password:
+            return True
+    return False
+
+def signup(username,password):
     user.append({
-        'username' : x,
-        'password' : y
+        'username' : username,
+        'password' : password
         })
     return user
     
-def login(x,y):
+def login(username,password):
     for i in user:
-        if i['username'].lower() == x.lower() and i['password'] == y:
+        if i['username'].lower() == username.lower() and i['password'] == password:
             return True
     return False
             
