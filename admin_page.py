@@ -6,9 +6,9 @@ def tambah_barang():
     for i in range(1, jumlah + 1):
         print(f"--- data barang ke {i} ---")
         produk = input("Nama: ")
-        kode = int(input("Kode makanan : "))
+        kode = input("Kode makanan : ")
         stok = int(input("Jumlah Stok: "))
         
         df.loc[len(df)] = [kode, produk, stok]
-print("Hasil: \n", df.tail())
+    print(f"Hasil: \n {df}")
 tambah_barang()
