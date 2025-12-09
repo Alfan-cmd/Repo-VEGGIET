@@ -11,3 +11,4 @@ def tambah_barang():
         
         df.loc[len(df)] = [kode, produk, stok]
 print("Hasil: \n", df.tail())
+tambah_barang()
