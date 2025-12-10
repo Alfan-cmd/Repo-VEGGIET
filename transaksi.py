@@ -1,5 +1,5 @@
 def tampilkan_menu():
-    print("\n--- ☕ MENU KAFE MAHASISWA ☕ ---")
+    print("\n--- MENU KAFE MAHASISWA---")
     print("1. Kopi Susu Gula Aren  - Rp 18.000")
     print("2. Americano            - Rp 15.000")
     print("3. Roti Bakar Coklat    - Rp 12.000")
