@@ -2,14 +2,15 @@ user = []
 admin = [
     {
         'username' : 'adminveggiet',
-        'password' : 'sehat321'
+        'password' : 'sehat321',
+        'alamat' : 'Belum di Isi'
     }
 ]
 homepage = True
 adminmenu = True
 def cekuser(x):
     for i in user:
-        if i['username'].lower() == input_username.lower():
+        if i['username'].lower() == x.lower():
             return True
     return False
                 
@@ -22,7 +23,7 @@ def adminlogin(username,password):
 def signup(username,password):
     user.append({
         'username' : username,
-        'password' : password
+        'password' : password,
         })
     return user
     
@@ -76,8 +77,8 @@ def loginmenu():
         if adminlogin(nameinput,passinput) != False:
             if login(nameinput, passinput):
                 print("Selamat Anda Berhasil Login")
-                menu()
-            menuadmin()
+                menu(nameinput,passinput)
+            menuadmin(nameinput)
             break
             
             menu()
@@ -85,11 +86,30 @@ def loginmenu():
         else:
             print("Password Atau Username Salah!")
 
-def menu(nameinput):
+def menu(nameinput,passinput):
     while True:
         print(f"Halo {nameinput}")
-        break
+        print("Selamat Datang Di Aplikasi Pemesanan Sayur Segar!")
+
+        while True:
+
+            print("1.Keranjang")
+            inputan_user_dimenu = input("Silahkan Dipilih Syng : ")
+
+            if inputan_user_dimenu == "1":
+                alamat(nameinput)
+
+            elif inputan_user_dimenu == "2":
+                break
+
+            
     
+def alamat(nameinput):
+    for i in user:
+        if i['username'] == nameinput:
+            i["alamat"] = input("Masukkan alamat anda")
+            print(user)
+
 
 def menuadmin():
     while True:
