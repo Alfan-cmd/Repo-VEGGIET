@@ -24,6 +24,9 @@ def signup(username,password):
     user.append({
         'username' : username,
         'password' : password,
+        'alamat' : 'Belum di Isi',
+        'nama_pengguna' : 'Belum di isi',
+        'no_telephone' : 'Belum di Isi'
         })
     return user
     
@@ -76,7 +79,7 @@ def loginmenu():
         passinput = input("Password:")
         if adminlogin(nameinput,passinput) != False:
             if login(nameinput, passinput):
-                print("Selamat Anda Berhasil Login")
+                print("=======Selamat Anda Berhasil Login=======")
                 menu(nameinput,passinput)
             menuadmin(nameinput)
             break
@@ -88,33 +91,85 @@ def loginmenu():
 
 def menu(nameinput,passinput):
     while True:
-        print(f"Halo {nameinput}")
+        print(f"Halo {nameinput}!")
         print("Selamat Datang Di Aplikasi Pemesanan Sayur Segar!")
 
         while True:
 
-            print("1.Keranjang")
+            print("1.Menu Profil\n2.Keluar")
             inputan_user_dimenu = input("Silahkan Dipilih Syng : ")
 
             if inputan_user_dimenu == "1":
-                alamat(nameinput)
+                profil(nameinput)
 
             elif inputan_user_dimenu == "2":
-                break
+                menulogin()
 
             
     
 def alamat(nameinput):
     for i in user:
         if i['username'] == nameinput:
-            i["alamat"] = input("Masukkan alamat anda")
-            print(user)
+            i[f"alamat"] = input("===================\nMasukkan alamat anda:")
+            print("=====================\nAlamat ditambahkan!\n===================")
+
+def nama(nameinput):
+    for i in user:
+        if i['username'] == nameinput:
+            i[f"nama_pengguna"] = input("===================\nMasukkan nama anda: ")
+            print("=============\nNama ditambahkan!\n=============")
+
+def nohp(nameinput):
+    for i in user:
+        if i['username'] == nameinput:
+            i[f"no_telephone"] = input("===================\nMasukkan Nomor Telephone anda: ")
+            print("============\nNo HP ditambahkan!\n============")
+
+
 
 
 def menuadmin():
     while True:
-        print("LOop")
+        print("Selamat datang di Menu admin")
         break
+
+def print_profil(nameinput):
+    for i in user:
+        if i['username'] == nameinput:
+            print(f"1.Nama : {i['nama_pengguna']}")
+            print(f"2.Alamat :{i['alamat']} ")
+            print(f"3.No Telephone :{i['no_telephone']}\n")
+
+def profil(nameinput):
+    print(f"\nSelamat datang di menu Profil User!")
+    while True:
+        print("== Profil anda saat ini ==")
+        print_profil(nameinput)
+        gantiortidak = input("1.Ganti\n2.Back\nPilih: ")
+        if gantiortidak == "1":
+            while True:
+                inputan_user_menu_profil = input("Mau Ganti yang mana? (1-3)\nPilih: ")
+
+                if inputan_user_menu_profil == "1":
+                    nama(nameinput)
+                    break
+
+                elif inputan_user_menu_profil == "2":
+                    alamat(nameinput)
+                    break
+
+                elif inputan_user_menu_profil == "3":
+                    nohp(nameinput)
+                    break
+                else:
+                    print("Masukkan angka valid")
+
+        elif gantiortidak == "2":
+            break
+
+            
+
+
 
 menulogin()
 
