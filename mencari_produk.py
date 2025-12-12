@@ -1,3 +1,4 @@
+import pandas as mp
 makanan_nabati = [
     # SAYURAN
     {"kode": "SAY001", "nama": "bayam", "stok": 25},
@@ -61,6 +62,15 @@ makanan_nabati = [
     {"kode": "JAM003", "nama": "jamur shitake", "stok": 12},
     {"kode": "JAM004", "nama": "jamur enoki", "stok": 20}
 ]
+open_file = mp.read_csv('daftar_veggiet.csv')
+open_file_2 = mp.read_csv('akun_user.csv')
+
+def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+    pilihanuser = input("Masukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
+    cari_produk = open_file[(open_file['username'] == pilihanuser)]
+    print(cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+
+
 def binarySearch(sorted_list, target_barang):
     left, right = 0, len(sorted_list) - 1
 
@@ -107,12 +117,14 @@ def main():
         print("Pilih Menu")
         print("1. Mencari Produk")
         print("2. Melihat Produk")
+        print("3. Mencari Produk (CSV)")
         pilihan = input("Masukkan Pilihan Anda: ")
         if pilihan == "1":
             binary_search_menu()
-        if pilihan == "2":
+        elif pilihan == "2":
             melihat_barang()
-
+        elif pilihan == "3":
+            mencariproduk()
 main()
 
 
