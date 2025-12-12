@@ -69,7 +69,7 @@ def singup():
         else:
             signup(SUname,SUpass)
             print("Selamat Akun Anda Berhasil Dibuat!")
-            break      
+            break   
                 
             
 def loginmenu():
@@ -89,7 +89,7 @@ def loginmenu():
         else:
             print("Password Atau Username Salah!")
 
-def menu(nameinput,passinput):
+def menu(nameinput):
     while True:
         print(f"Halo {nameinput}!")
         print("Selamat Datang Di Aplikasi Pemesanan Sayur Segar!")
@@ -167,6 +167,13 @@ def profil(nameinput):
         elif gantiortidak == "2":
             break
 
+def append_kefile():
+    for i in user:
+        ember_ke_file = [i['username'],i['password'],i['nama_pengguna'],
+                    i['alamat'],i['no_telephone']]
+    with open("akun_user.csv","a") as file_akun:
+        hasil = ','.join(ember_ke_file)
+        file_akun.write(f"\n{hasil}")
             
 
 
@@ -174,3 +181,4 @@ def profil(nameinput):
 menulogin()
 
 print("See You Next Time :)")
+append_kefile()

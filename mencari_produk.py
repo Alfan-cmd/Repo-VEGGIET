@@ -63,9 +63,11 @@ makanan_nabati = [
     {"kode": "JAM004", "nama": "jamur enoki", "stok": 20}
 ]
 open_file = mp.read_csv('daftar_veggiet.csv')
+open_file_2 = mp.read_csv('akun_user.csv')
+
 def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
     pilihanuser = input("Masukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
-    cari_produk = open_file[(open_file['nama'] == pilihanuser)]
+    cari_produk = open_file[(open_file['username'] == pilihanuser)]
     print(cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
 
 
