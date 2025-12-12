@@ -1,4 +1,3 @@
-
 def print_profil(nameinput, user):
     for i in user:
         if i['username'] == nameinput:

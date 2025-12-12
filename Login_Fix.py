@@ -1,6 +1,6 @@
 from profiluser import profil
-import pandas as pd
-csv = "akun_user.csv"
+
+user = []
 admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
 
 homepage = True
