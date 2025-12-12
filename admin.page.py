@@ -13,5 +13,6 @@ def tambah_barang():
 
         
         df.loc[len(df)] = [kode, produk, stok, harga, kategori] #untuk memasukkan data
+        df.to_csv("daftar_veggiet.csv", index=False)
     print(f"Hasil: \n {df}")
 tambah_barang()
