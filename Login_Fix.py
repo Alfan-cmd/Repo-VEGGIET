@@ -110,7 +110,8 @@ def adminmenu():
         print("\n=== Menu Admin ===")
         print("1.Cek Barang")
         print("2.Menambah Barang")
-        print("3.Log Out")
+        print("3.Menambah stok barang")
+        print("4.Log Out")
         
         inputadmin1 = input("Pilih Opsi:")
         
