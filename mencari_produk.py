@@ -67,9 +67,9 @@ open_file = mp.read_csv('daftar_veggiet.csv')
 open_file_2 = mp.read_csv('akun_user.csv')
 
 def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
-    pilihanuser = input("Masukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
+    pilihanuser = input("\nMasukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
     cari_produk = open_file[(open_file['nama'] == pilihanuser)]
-    print(cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+    print("\n", cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
 
 def menambah_stok():
     nama_barang = input("Masukkan nama barang : ").lower()
@@ -111,6 +111,7 @@ def binary_search_menu():
 
     input("Tekan enter...")
 
+"""
 def melihat_barang():
     print("=== Daftar Barang ===")
     if len(makanan_nabati) == 0:
@@ -119,8 +120,12 @@ def melihat_barang():
         for i in range(len(makanan_nabati)):
             b = makanan_nabati[i]
             print(f"[{i+1}] Nama Produk: {b['nama']} , Stok: {b['stok']} , Kode: {b['kode']}")
+"""
+def melihatbarang():
+    print("\n=== Daftar Barang ===")
+    print(open_file)
 
-
+"""
 def main():
     while True:
         print("Pilih Menu")
@@ -138,6 +143,6 @@ def main():
         elif pilihan == "4":
             menambah_stok()
 main()
-
+"""
 
 
