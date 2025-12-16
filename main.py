@@ -1,5 +1,10 @@
-from profiluser import profil
+import pandas as pd
 
+from profiluser import profil
+from adminpage import tambah_barang
+from mencari_produk import menambah_stok, mencariproduk, melihatbarang
+
+open_file = pd.read_csv("akun_user.csv")
 user = []
 admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
 
@@ -16,7 +21,7 @@ def cekuser(x):
                 
 def adminlogin(x,y):
     for i in admin:
-        if i['username'].lower() == x and i['password'] == y:
+        if i['username'].lower() == x.lower() and i['password'] == y:
             return True
     return False
 
@@ -90,8 +95,9 @@ def main_page(current):
         print("\n=== Homepage ===")
         print("1.Profile")
         print("2.Status")
-        print("3.Log Out")
-        input2 = input("Pilih Opsi:")
+        print("3.Search")
+        print("4.Log Out")
+        input2 = input("\nPilih Opsi:")
         
         if input2 == "1":
             profil(current, user)
@@ -100,6 +106,9 @@ def main_page(current):
             break
         
         elif input2 == "3":
+            mencariproduk()
+        
+        elif input2 == "4":
             homepage = True
             return
         else:
@@ -111,16 +120,29 @@ def adminmenu():
         print("1.Cek Barang")
         print("2.Menambah Barang")
         print("3.Menambah stok barang")
-        print("4.Log Out")
+        print("4.Search Produk")
+        print("5.Log Out")
         
-        inputadmin1 = input("Pilih Opsi:")
-        
+        inputadmin1 = input("\nPilih Opsi:")
+
         if inputadmin1 == "1":
-            pass
+            melihatbarang()
         
-        else:
+        elif inputadmin1 == "2":
+            tambah_barang()
+            
+        elif inputadmin1 == "3":
+            menambah_stok()
+    
+        elif inputadmin1 == "4":
+            mencariproduk()
+            
+        elif inputadmin1 == "5":
             admintoggle = True
             return
+        
+        else:
+            print("Opsi tidak tersedia")
         
 while True:
     
