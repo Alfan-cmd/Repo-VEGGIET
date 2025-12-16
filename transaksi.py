@@ -72,4 +72,4 @@ def tampilkan_sayuran():
        
 
 
-tampilkan_sayuran()
+# tampilkan_sayuran()

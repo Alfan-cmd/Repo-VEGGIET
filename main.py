@@ -3,6 +3,7 @@ import pandas as pd
 from profiluser import profil
 from adminpage import tambah_barang
 from mencari_produk import menambah_stok, mencariproduk, melihatbarang
+from transaksi import beli_sayuran, tampilkan_sayuran
 
 open_file = pd.read_csv("akun_user.csv")
 user = []
@@ -96,7 +97,9 @@ def main_page(current):
         print("1.Profile")
         print("2.Status")
         print("3.Search")
-        print("4.Log Out")
+        print("4.Catalog")
+        print("5.Pesan")
+        print("6.Log Out")
         input2 = input("\nPilih Opsi:")
         
         if input2 == "1":
@@ -109,6 +112,12 @@ def main_page(current):
             mencariproduk()
         
         elif input2 == "4":
+            melihatbarang()
+            
+        elif input2 == "5":
+            beli_sayuran()
+        
+        elif input2 == "6":
             homepage = True
             return
         else:
