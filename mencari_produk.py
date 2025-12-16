@@ -62,13 +62,22 @@ makanan_nabati = [
     {"kode": "JAM003", "nama": "jamur shitake", "stok": 12},
     {"kode": "JAM004", "nama": "jamur enoki", "stok": 20}
 ]
+#PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
 open_file = mp.read_csv('daftar_veggiet.csv')
 open_file_2 = mp.read_csv('akun_user.csv')
 
 def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
     pilihanuser = input("Masukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
-    cari_produk = open_file[(open_file['username'] == pilihanuser)]
+    cari_produk = open_file[(open_file['nama'] == pilihanuser)]
     print(cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+
+def menambah_stok():
+    nama_barang = input("Masukkan nama barang : ").lower()
+    jumlah_ditambah = int(input("Masukkan mau menambah berapa stok : "))
+    open_file.loc[open_file['nama'] == nama_barang, 'stok'] += jumlah_ditambah
+    open_file.to_csv("daftar_veggiet.csv", index=False)
+#PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+
 
 
 def binarySearch(sorted_list, target_barang):
@@ -118,6 +127,7 @@ def main():
         print("1. Mencari Produk")
         print("2. Melihat Produk")
         print("3. Mencari Produk (CSV)")
+        print("4. Menambah stok")
         pilihan = input("Masukkan Pilihan Anda: ")
         if pilihan == "1":
             binary_search_menu()
@@ -125,6 +135,8 @@ def main():
             melihat_barang()
         elif pilihan == "3":
             mencariproduk()
+        elif pilihan == "4":
+            menambah_stok()
 main()
 
 
