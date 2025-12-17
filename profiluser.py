@@ -1,51 +1,45 @@
-def print_profil(nameinput, user):
-    for i in user:
-        if i['username'] == nameinput:
-            print(f"\n1.Nama : {i['nama_pengguna']}")
-            print(f"2.Alamat :{i['alamat']} ")
-            print(f"3.No Telephone :{i['no_telephone']}\n")
+import pandas as pd
 
-def profil(nameinput, user):
-    print(f"\nSelamat datang di menu Profil User!")
+df_user = pd.read_csv("akun_user.csv")
+
+def print_profil(username):
+    user = df_user[df_user["username"] == username].iloc[0]
+
+    print()
+    print(f"1. Nama        : {user['nama_pengguna']}")
+    print(f"2. Alamat        : {user['alamat']}")
+    print(f"3. No Telephone  : {user['no_telephone']}\n")
+
+
+def profil(username):
+    global df_user
+
+    print("\nSelamat datang di menu Profil User!")
+
     while True:
         print("\n== Profil anda saat ini ==")
-        print_profil(nameinput,user)
-        gantiortidak = input("1.Ganti\n2.Back\nPilih: ")
-        if gantiortidak == "1":
-            while True:
-                inputan_user_menu_profil = input("Mau Ganti yang mana? (1-3)\nPilih: ")
+        print_profil(username)
 
-                if inputan_user_menu_profil == "1":
-                    nama(nameinput,user)
-                    break
+        ganti = input("1. Ganti\n2. Back\nPilih: ")
 
-                elif inputan_user_menu_profil == "2":
-                    alamat(nameinput,user)
-                    break
+        if ganti == "1":
+            pilih = input("Mau ganti yang mana? (1-3)\nPilih: ")
 
-                elif inputan_user_menu_profil == "3":
-                    nohp(nameinput,user)
-                    break
-                else:
-                    print("Masukkan angka valid")
+            if pilih == "1":
+                df_user.loc[df_user["username"] == username, "nama_pengguna"] = input("Masukkan nama: ")
 
-        elif gantiortidak == "2":
-            break
-        
-def alamat(nameinput,user):
-    for i in user:
-        if i['username'] == nameinput:
-            i[f"alamat"] = input("===================\nMasukkan alamat anda:")
-            print("=====================\nAlamat ditambahkan!\n===================")
+            elif pilih == "2":
+                df_user.loc[df_user["username"] == username, "alamat"] = input("Masukkan alamat: ")
 
-def nama(nameinput,user):
-    for i in user:
-        if i['username'] == nameinput:
-            i[f"nama_pengguna"] = input("===================\nMasukkan nama anda: ")
-            print("=============\nNama ditambahkan!\n=============")
+            elif pilih == "3":
+                df_user.loc[df_user["username"] == username, "no_telephone"] = input("Masukkan no HP: ")
 
-def nohp(nameinput,user):
-    for i in user:
-        if i['username'] == nameinput:
-            i[f"no_telephone"] = input("===================\nMasukkan Nomor Telephone anda: ")
-            print("============\nNo HP ditambahkan!\n============")
+            else:
+                print("Pilihan tidak valid")
+                continue
+
+            df_user.to_csv("akun_user.csv", index=False)
+            print("Data berhasil diperbarui!\n")
+
+        elif ganti == "2":
+            return
