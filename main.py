@@ -7,6 +7,12 @@ from transaksi import beli_sayuran, tampilkan_sayuran
 
 open_file = pd.read_csv("akun_user.csv")
 user = []
+user_baru = []
+
+for i in range(len(open_file)):
+    row_dict = open_file.iloc[i].to_dict()
+    user.append(row_dict)
+
 admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
 
 homepage = True
@@ -34,6 +40,13 @@ def signup(username,password):
         'nama_pengguna' : 'Belum di isi',
         'no_telephone' : 'Belum di Isi'
         })
+    user_baru.append({
+        'username' : username,
+        'password' : password,
+        'alamat' : 'Belum di Isi',
+        'nama_pengguna' : 'Belum di isi',
+        'no_telephone' : 'Belum di Isi'
+        })
     return user
     
 def login(x,y):
@@ -55,8 +68,8 @@ def menulogin():
         if input1 == "1":
             print("\n=== SIGN UP ===")
             while True:
-                SUname = input("Masukan Username:")
-                SUpass = input("Masukan Password:")
+                SUname = str(input("Masukan Username:"))
+                SUpass = str(input("Masukan Password:"))
                 
                 if cekuser(SUname):
                     print("Username Telah Dipakai!")
@@ -152,6 +165,16 @@ def adminmenu():
         
         else:
             print("Opsi tidak tersedia")
+
+def append_kefile():
+    for i in user_baru:
+        ember_ke_file = [i['username'],i['password'],i['alamat'],
+                         i['nama_pengguna'],i['no_telephone']]
+    with open("akun_user.csv","a") as file_akun:
+        if len(user_baru) != 0:
+            hasil = ','.join(ember_ke_file)
+            file_akun.write(f"\n{hasil}")
+
         
 while True:
     
@@ -159,6 +182,7 @@ while True:
         main_page(current)
     elif quit == True:
         print("See You Next Time!")
+        append_kefile()
         break   
     elif not admintoggle:
         adminmenu()
