@@ -1,0 +1,3 @@
+username,password,role,alamat,nama_pengguna,no_telephone
+admin,admin123,2,Jakarta,Admin Utama,8123456789
+user,user123,1,Bandung,Kresna,8111111111
