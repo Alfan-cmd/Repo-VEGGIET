@@ -4,12 +4,13 @@ import pandas as pd
 #Import File
 from profiluser import profil
 from adminpage import tambah_barang
-from mencari_produk import menambah_stok, mencariproduk, melihatbarang
-from transaksi import beli_sayuran, tampilkan_sayuran
+from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
+from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 
 #Variable
 df_user = pd.read_csv("akun_user.csv")
-user = []
+user = []   
+
 admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
 
 homepage = True
@@ -28,6 +29,7 @@ def menulogin():
         print("3. Quit")
 
         pilihan = input("Pilih Opsi: ")
+        print()
 
         if pilihan == "1":
             signup()
@@ -36,7 +38,6 @@ def menulogin():
             username, role = login()
 
             if username:
-                print(f"\nSelamat datang {username}!\n")
                 if role == 2:
                     adminmenu(username)
                 else:
@@ -51,24 +52,10 @@ def menulogin():
         else:
             print("Opsi tidak tersedia")
 
- 
-# def cekuser(x):
-#     for i in user:
-#         if i['username'].lower() == x.lower():
-#             return True
-#     return False
-                
-# def adminlogin(x,y):
-#     for i in admin:
-#         if i['username'].lower() == x.lower() and i['password'] == y:
-#             return True
-#     return False
-
 def signup():
     global df_user
     
     print("=== Registrasi User Baru ===")
-    print()
     
     while True:
         usernameInput = input("Masukkan Username: ")
@@ -103,7 +90,6 @@ def login():
     while True:
 
         print("=== Silahkan Login ===")
-        print()
         
         #User menginput username dan password
         usernameInput = input("Masukkan Username: ")
@@ -124,27 +110,34 @@ def login():
 
     
 def main_page(current):
-    print(f"Selamat Datang {current}!")
-
+    print(f"\nSelamat datang {current}!")
+    
     while True:
         print("\n=== Homepage ===")
-        print("1. Profile")
-        print("2. Search")
-        print("3. Catalog")
+        print("1. Profil")
+        print("2. Cari Produk")
+        print("3. Daftar Produk")
         print("4. Pesan")
-        print("5. Log Out")
+        print("5. Lihat Keranjang")
+        print("6. Checkout")
+        print("7. Log Out")
 
         pilih = input("Pilih Opsi: ")
+        print()
 
         if pilih == "1":
             profil(current)
         elif pilih == "2":
             mencariproduk()
         elif pilih == "3":
-            melihatbarang()
+            tampilkan_sayuran()
         elif pilih == "4":
-            beli_sayuran()
+            pesan_sayuran(current)
         elif pilih == "5":
+            lihat_cart(current)
+        elif pilih == "6":
+            checkout(current)
+        elif pilih == "7":
             print("Logout...\n")
             return
         else:
@@ -165,7 +158,7 @@ def adminmenu(current):
         pilih = input("Pilih Opsi: ")
 
         if pilih == "1":
-            melihatbarang()
+            tampilkan_sayuran()
         elif pilih == "2":
             tambah_barang()
         elif pilih == "3":
