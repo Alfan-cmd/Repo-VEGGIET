@@ -9,7 +9,13 @@ from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
 
 #Variable
-df_user = pd.read_csv("akun_user.csv")
+def load_user():
+    return pd.read_csv("akun_user.csv")
+
+def save_user(df):
+    return df_user.to_csv("akun_user.csv", index=False)
+    
+df_user = load_user()
 user = []   
 
 admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
@@ -61,7 +67,7 @@ def signup():
     while True:
         usernameInput = input("Masukkan Username: ")
         
-        if usernameInput in df_user["username"].values:
+        if usernameInput.lower() in df_user["username"].str.lower().values:
             print("Username sudah digunakan")
             print()
             continue
@@ -80,7 +86,9 @@ def signup():
     
     df_user = pd.concat([df_user, pd.DataFrame([userBaru])], ignore_index=True)
     
-    df_user.to_csv("akun_user.csv", index=False)
+    save_user(df_user)
+    
+    df_user = load_user()
     
     print()
     print("Registrasi berhasil, silahkan login.")
@@ -93,12 +101,12 @@ def login():
         print("=== Silahkan Login ===")
         
         #User menginput username dan password
-        usernameInput = input("Masukkan Username: ")
+        usernameInput = input("Masukkan Username: ").lower()
         passwordInput = input("Masukkan Password: ")
 
         #Pengecekan apakah ada username dan password di dalam CSV seperti yang diinput oleh user
         user = df_user[
-            (df_user["username"] == usernameInput) &
+            (df_user["username"].str.lower() == usernameInput) &
             (df_user["password"] == passwordInput)
         ]
         #Jika isi variable user itu tidak kosong maka akan mengecek role
@@ -108,9 +116,8 @@ def login():
         else:
             return None, None
        
-
-    
 def main_page(current):
+    global df_user
     print(f"\nSelamat datang {current}!")
     
     while True:
@@ -128,7 +135,7 @@ def main_page(current):
         print()
 
         if pilih == "1":
-            profil(current)
+            profil(current,df_user)
         elif pilih == "2":
             mencariproduk()
         elif pilih == "3":
@@ -177,7 +184,17 @@ def adminmenu(current):
             return
         else:
             print("Opsi tidak tersedia")
-        
+
+'''
+def append_kefile():
+    for i in user:
+        ember_ke_file = [i['username'],i['password'],i['alamat'],
+                         i['nama_pengguna'],i['no_telephone']]
+    with open("akun_user.csv","a") as file_akun:
+        if len(user) != 0:
+            hasil = ','.join(ember_ke_file)
+            file_akun.write(f"\n{hasil}")
+'''
 while True:
     if not menulogin():
         break

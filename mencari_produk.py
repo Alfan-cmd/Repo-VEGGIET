@@ -9,7 +9,10 @@ open_file_2 = mp.read_csv('akun_user.csv')
 def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
     pilihanuser = input("\nMasukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
     cari_produk = open_file[(open_file['nama'] == pilihanuser)]
-    print("\n", cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+    if cari_produk.empty:
+        print("\nItem tidak ditemukan :<")
+    elif cari_produk.empty == False:
+        print("\n", cari_produk.to_string(index= False)) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
 
 def menambah_stok():
     nama_barang = input("Masukkan nama barang : ").lower()
@@ -18,7 +21,7 @@ def menambah_stok():
     open_file.to_csv("daftar_veggiet.csv", index=False)
 
 
-
+"""
 def binarySearch(sorted_list, target_barang):
     left, right = 0, len(sorted_list) - 1
 
@@ -33,7 +36,7 @@ def binarySearch(sorted_list, target_barang):
         else:
             right = mid - 1
     return -1
-
+"""
 
 def tampilkan_sayuran():
     #Banyaknya data per halaman
