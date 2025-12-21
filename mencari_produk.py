@@ -9,7 +9,10 @@ open_file_2 = mp.read_csv('akun_user.csv')
 def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
     pilihanuser = input("\nMasukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
     cari_produk = open_file[(open_file['nama'] == pilihanuser)]
-    print("\n", cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+    if cari_produk.empty:
+        print("Item tidak ditemukan :<")
+    elif cari_produk.empty == False:
+        print("\n", cari_produk) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
 
 def menambah_stok():
     nama_barang = input("Masukkan nama barang : ").lower()

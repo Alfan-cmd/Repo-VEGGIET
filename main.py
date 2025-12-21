@@ -171,6 +171,7 @@ def adminmenu(current):
         else:
             print("Opsi tidak tersedia")
 
+'''
 def append_kefile():
     for i in user:
         ember_ke_file = [i['username'],i['password'],i['alamat'],
@@ -179,8 +180,7 @@ def append_kefile():
         if len(user) != 0:
             hasil = ','.join(ember_ke_file)
             file_akun.write(f"\n{hasil}")
-
-        
+'''
 while True:
     if menulogin() == False:
         break
