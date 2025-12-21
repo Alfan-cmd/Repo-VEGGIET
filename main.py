@@ -9,7 +9,13 @@ from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
 
 #Variable
-df_user = pd.read_csv("akun_user.csv")
+def load_user():
+    return pd.read_csv("akun_user.csv")
+
+def save_user(df):
+    return df_user.to_csv("akun_user.csv", index=False)
+    
+df_user = load_user()
 user = []   
 
 admin = [{'username' : 'adminsehat', 'password' : 'veggiet123'}]
@@ -80,7 +86,9 @@ def signup():
     
     df_user = pd.concat([df_user, pd.DataFrame([userBaru])], ignore_index=True)
     
-    df_user.to_csv("akun_user.csv", index=False)
+    save_user(df_user)
+    
+    df_user = load_user()
     
     print()
     print("Registrasi berhasil, silahkan login.")
@@ -111,6 +119,7 @@ def login():
 
     
 def main_page(current):
+    global df_user
     print(f"\nSelamat datang {current}!")
     
     while True:
@@ -128,7 +137,7 @@ def main_page(current):
         print()
 
         if pilih == "1":
-            profil(current)
+            profil(current,df_user)
         elif pilih == "2":
             mencariproduk()
         elif pilih == "3":

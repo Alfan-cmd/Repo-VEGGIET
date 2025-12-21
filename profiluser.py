@@ -1,23 +1,22 @@
-import pandas as pd
-
-df_user = pd.read_csv("akun_user.csv")
-
-def print_profil(username):
-    user = df_user[df_user["username"] == username].iloc[0]
+def print_profil(username,df_user):
+    user_data = df_user[df_user["username"] == username]
+    
+    if user_data.empty:
+        print("Data user tidak ditemukan")
+        
+    user = user_data.iloc[0]
     print(f"1. Nama        : {user['nama_pengguna']}")
     print(f"2. Alamat        : {user['alamat']}")
     print(f"3. No Telephone  : {user['no_telephone']}\n")
 
-
-def profil(username):
-    global df_user
-
+    
+def profil(username,df_user):
     print("Selamat datang di menu Profil User!")
     print()
 
     while True:
         print("== Profil anda saat ini ==")
-        print_profil(username)
+        print_profil(username,df_user)
 
         ganti = input("1. Ganti\n2. Kembali\nPilih: ")
 
