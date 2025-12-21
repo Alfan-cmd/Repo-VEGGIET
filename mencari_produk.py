@@ -15,6 +15,21 @@ def printlah(nama,listberisiapaaja):
     if cari_produk.empty:
         print("\nItem tidak ditemukan :<")
     elif cari_produk.empty == False:
+        print("\n", cari_produk.to_string(index= False)) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+def cariKategori():
+    print("=== Kategori Produk ===")
+    print("Sayur")
+    print("Buah")
+    print("Kacang")
+    print("Biji-Bijian")
+    print("Olahan")
+    print("Jamur")
+    kategoriuser = input("Masukkan Kategori yang ingin dicari: ").lower()
+    kategori_produk = open_file[(open_file['kategori'] == kategoriuser )]
+    if kategori_produk.empty:
+        print("\n Kategori yang dicari tidak ditemukan")
+    elif kategori_produk.empty == False:
+        print("\n",kategori_produk.to_string(index = False))
         print("\n", cari_produk[listberisiapaaja].to_markdown(index=False))
 
 def menambah_stok():
