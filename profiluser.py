@@ -4,8 +4,6 @@ df_user = pd.read_csv("akun_user.csv")
 
 def print_profil(username):
     user = df_user[df_user["username"] == username].iloc[0]
-
-    print()
     print(f"1. Nama        : {user['nama_pengguna']}")
     print(f"2. Alamat        : {user['alamat']}")
     print(f"3. No Telephone  : {user['no_telephone']}\n")
@@ -14,13 +12,14 @@ def print_profil(username):
 def profil(username):
     global df_user
 
-    print("\nSelamat datang di menu Profil User!")
+    print("Selamat datang di menu Profil User!")
+    print()
 
     while True:
-        print("\n== Profil anda saat ini ==")
+        print("== Profil anda saat ini ==")
         print_profil(username)
 
-        ganti = input("1. Ganti\n2. Back\nPilih: ")
+        ganti = input("1. Ganti\n2. Kembali\nPilih: ")
 
         if ganti == "1":
             pilih = input("Mau ganti yang mana? (1-3)\nPilih: ")
