@@ -13,7 +13,20 @@ def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
         print("\nItem tidak ditemukan :<")
     elif cari_produk.empty == False:
         print("\n", cari_produk.to_string(index= False)) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
-
+def cariKategori():
+    print("=== Kategori Produk ===")
+    print("Sayur")
+    print("Buah")
+    print("Kacang")
+    print("Biji-Bijian")
+    print("Olahan")
+    print("Jamur")
+    kategoriuser = input("Masukkan Kategori yang ingin dicari: ").lower()
+    kategori_produk = open_file[(open_file['kategori'] == kategoriuser )]
+    if kategori_produk.empty:
+        print("\n Kategori yang dicari tidak ditemukan")
+    elif kategori_produk.empty == False:
+        print("\n",kategori_produk.to_string(index = False))
 def menambah_stok():
     nama_barang = input("Masukkan nama barang : ").lower()
     jumlah_ditambah = int(input("Masukkan mau menambah berapa stok : "))

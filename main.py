@@ -7,7 +7,7 @@ from adminpage import tambah_barang
 from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
-
+from mencari_produk import cariKategori
 #Variable
 def load_user():
     return pd.read_csv("akun_user.csv")
@@ -124,12 +124,13 @@ def main_page(current):
         print("\n=== Homepage ===")
         print("1. Profil")
         print("2. Cari Produk")
-        print("3. Daftar Produk")
-        print("4. Pesan")
-        print("5. Lihat Keranjang")
-        print("6. Checkout")
-        print("7. Subscription")
-        print("8. Log Out")
+        print("3. Daftar produk berdasarkan Kategori ")
+        print("4. Daftar Produk")
+        print("5. Pesan")
+        print("6. Lihat Keranjang")
+        print("7. Checkout")
+        print("8. Subscription")
+        print("9. Log Out")
 
         pilih = input("Pilih Opsi: ")
         print()
@@ -139,16 +140,18 @@ def main_page(current):
         elif pilih == "2":
             mencariproduk()
         elif pilih == "3":
-            tampilkan_sayuran()
+            cariKategori()
         elif pilih == "4":
-            pesan_sayuran(current)
+            tampilkan_sayuran()
         elif pilih == "5":
-            lihat_cart(current)
+            pesan_sayuran(current)
         elif pilih == "6":
-            checkout(current)
+            lihat_cart(current)
         elif pilih == "7":
-            menu_subs(current)
+            checkout(current)
         elif pilih == "8":
+            menu_subs(current)
+        elif pilih == "9":
             print("Logout...\n")
             return
         else:
