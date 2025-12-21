@@ -1,25 +1,61 @@
 import pandas as mp
 from transaksi import beli_sayuran
 
-
 dfProduk = mp.read_csv("daftar_veggiet.csv")
 open_file = mp.read_csv('daftar_veggiet.csv')
 open_file_2 = mp.read_csv('akun_user.csv')
 
 def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
     pilihanuser = input("\nMasukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
-    cari_produk = open_file[(open_file['nama'] == pilihanuser)]
+    kolomTampil = ["nama","stok","harga"]
+    printlah(pilihanuser,kolomTampil) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+
+def printlah(nama,listberisiapaaja):
+    cari_produk = open_file[(open_file['nama'] == nama)]
     if cari_produk.empty:
         print("\nItem tidak ditemukan :<")
     elif cari_produk.empty == False:
-        print("\n", cari_produk.to_string(index= False)) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+        print("\n", cari_produk[listberisiapaaja].to_markdown(index=False))
 
 def menambah_stok():
-    nama_barang = input("Masukkan nama barang : ").lower()
-    jumlah_ditambah = int(input("Masukkan mau menambah berapa stok : "))
-    open_file.loc[open_file['nama'] == nama_barang, 'stok'] += jumlah_ditambah
-    open_file.to_csv("daftar_veggiet.csv", index=False)
-
+    while True:
+        kolomtampil = ["nama","stok"]
+        nama_barang = input("Masukkan nama barang : ").lower()
+        if open_file.loc[open_file["nama"]==nama_barang].empty == True:
+            print("Barang ini tidak tersedia")
+        elif open_file.loc[open_file["nama"]==nama_barang].empty == False:
+            printlah(nama_barang,kolomtampil)
+            inputubahstok = input("(Menambah/Mengurangi):").lower()
+            if inputubahstok == "menambah":
+                while True:
+                    jumlah_ditambah = input("Masukkan mau menambah berapa stok : ")
+                    if jumlah_ditambah.isdigit():
+                        jumlah_ditambah = int(jumlah_ditambah)
+                        if jumlah_ditambah >= 0:
+                            open_file.loc[open_file['nama'] == nama_barang, 'stok'] += jumlah_ditambah
+                            open_file.to_csv("daftar_veggiet.csv", index=False)
+                            break
+                        else:
+                            print("Mohon masukkan angka positif :>")
+                    else:
+                        print("Mohon masukkan angka numerik :>")
+                print("Sudah ditambah nih :>")
+                printlah(nama_barang,kolomtampil)
+                break
+            
+            elif inputubahstok == "mengurangi":
+                jumlah_dikurang = input("Masukan mau mengurangi berapa stok:")
+                if jumlah_dikurang.isdigit():
+                    jumlah_dikurang = int(jumlah_dikurang)
+                    if jumlah_dikurang >= 0:
+                        open_file.loc[open_file["nama"] == nama_barang, 'stok'] -= jumlah_dikurang
+                        open_file.to_csv("daftar_veggiet.csv", index=False)
+                    else:
+                        print("Mohon masukkan angka positif :>")
+                else:
+                    print("Mohon masukkan angka numerik :>")
+                printlah(nama_barang,kolomtampil)
+                break
 
 """
 def binarySearch(sorted_list, target_barang):
