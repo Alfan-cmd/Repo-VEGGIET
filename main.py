@@ -67,7 +67,7 @@ def signup():
     while True:
         usernameInput = input("Masukkan Username: ")
         
-        if usernameInput in df_user["username"].values:
+        if usernameInput.lower() in df_user["username"].str.lower().values:
             print("Username sudah digunakan")
             print()
             continue
@@ -101,12 +101,12 @@ def login():
         print("=== Silahkan Login ===")
         
         #User menginput username dan password
-        usernameInput = input("Masukkan Username: ")
+        usernameInput = input("Masukkan Username: ").lower()
         passwordInput = input("Masukkan Password: ")
 
         #Pengecekan apakah ada username dan password di dalam CSV seperti yang diinput oleh user
         user = df_user[
-            (df_user["username"] == usernameInput) &
+            (df_user["username"].str.lower() == usernameInput) &
             (df_user["password"] == passwordInput)
         ]
         #Jika isi variable user itu tidak kosong maka akan mengecek role
@@ -116,8 +116,6 @@ def login():
         else:
             return None, None
        
-
-    
 def main_page(current):
     global df_user
     print(f"\nSelamat datang {current}!")
@@ -186,7 +184,17 @@ def adminmenu(current):
             return
         else:
             print("Opsi tidak tersedia")
-        
+
+'''
+def append_kefile():
+    for i in user:
+        ember_ke_file = [i['username'],i['password'],i['alamat'],
+                         i['nama_pengguna'],i['no_telephone']]
+    with open("akun_user.csv","a") as file_akun:
+        if len(user) != 0:
+            hasil = ','.join(ember_ke_file)
+            file_akun.write(f"\n{hasil}")
+'''
 while True:
     if not menulogin():
         break
