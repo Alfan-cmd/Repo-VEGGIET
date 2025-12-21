@@ -6,6 +6,7 @@ from profiluser import profil
 from adminpage import tambah_barang
 from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
+from subs import menu_subs
 
 #Variable
 df_user = pd.read_csv("akun_user.csv")
@@ -120,7 +121,8 @@ def main_page(current):
         print("4. Pesan")
         print("5. Lihat Keranjang")
         print("6. Checkout")
-        print("7. Log Out")
+        print("7. Subscription")
+        print("8. Log Out")
 
         pilih = input("Pilih Opsi: ")
         print()
@@ -138,6 +140,8 @@ def main_page(current):
         elif pilih == "6":
             checkout(current)
         elif pilih == "7":
+            menu_subs(current)
+        elif pilih == "8":
             print("Logout...\n")
             return
         else:
@@ -153,7 +157,8 @@ def adminmenu(current):
         print("2. Tambah Barang")
         print("3. Tambah Stok")
         print("4. Search Produk")
-        print("5. Log Out")
+        print("5. Subscription")
+        print("6. Log Out")
 
         pilih = input("Pilih Opsi: ")
 
@@ -166,11 +171,13 @@ def adminmenu(current):
         elif pilih == "4":
             mencariproduk()
         elif pilih == "5":
+            menu_subs(current)
+        elif pilih == "6":
             print("Logout admin...\n")
             return
         else:
             print("Opsi tidak tersedia")
         
 while True:
-    if menulogin() == False:
+    if not menulogin():
         break
