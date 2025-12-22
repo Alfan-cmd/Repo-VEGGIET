@@ -7,6 +7,7 @@ from adminpage import tambah_barang
 from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
+from menukurir import pesanan_satuan, pesanan_berlangganan
 
 #Variable
 def load_user():
@@ -47,6 +48,8 @@ def menulogin():
             if username:
                 if role == 2:
                     adminmenu(username)
+                elif role == 3:
+                    menukurir(username)
                 else:
                     main_page(username)
             else:
@@ -184,6 +187,18 @@ def adminmenu(current):
             return
         else:
             print("Opsi tidak tersedia")
+            
+def menukurir(current):
+    while True:
+        print("1. Pesanan Satuan\n2. Pesanan Langganan\n3. Quit")
+        pilihankurir = str(input("Masukkan pilihan: "))
+        if pilihankurir == "1":
+            pesanan_satuan()
+        elif pilihankurir == "2":
+            pesanan_berlangganan()
+        elif pilihankurir == "3":
+            print("Logout kurir")
+            return
 
 '''
 def append_kefile():
