@@ -1,2 +1,8 @@
-username,kode,nama,harga,jumlah,subtotal
-user,SAY001,bayam,3000,20,60000
+username,kode,nama,harga,jumlah,subtotal,status,nama_pengguna
+user,SAY001,bayam,3000,10,30000,Belum dikirim,Kresna
+user,SAY001,bayam,3000,10,30000,Belum dikirim,Kresna
+user,SAY001,bayam,3000,15,45000,Belum dikirim,Kresna
+user,JAM004,jamur enoki,8000,10,80000,Belum dikirim,Kresna
+user,SAY001,bayam,3000,5,15000,Belum dikirim,Kresna
+user,JAM004,jamur enoki,8000,1,8000,Belum dikirim,Kresna
+user,SAY002,kangkung,2500,11,27500,Belum dikirim,Kresna

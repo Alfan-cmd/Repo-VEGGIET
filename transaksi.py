@@ -4,6 +4,7 @@ import pandas as pd
 df = pd.read_csv("daftar_veggiet.csv")
 dfUser = pd.read_csv("akun_user.csv")
 df_keranjang = pd.read_csv("keranjang.csv")
+dfcart = pd.read_csv("cart.csv")
 
 
 #Function beli
@@ -23,6 +24,7 @@ def beli_sayuran(username):
         return
 
     item = df[df["nama"] == namaBarang].iloc[0]
+    namapengguna = dfUser[dfUser["username"] == username].iloc[0]
 
     # Input jumlah
     jumlahInput = input("Masukkan jumlah yang ingin dibeli: ")
@@ -64,7 +66,9 @@ def beli_sayuran(username):
             "nama": item["nama"],
             "harga": item["harga"],
             "jumlah": jumlahBeli,
-            "subtotal": subtotal
+            "subtotal": subtotal,
+            "status" : "Belum dikirim",
+            "nama_pengguna": namapengguna["nama_pengguna"]
         }
         df_keranjang = pd.concat(
             [df_keranjang, pd.DataFrame([data_baru])],
@@ -138,18 +142,57 @@ def checkout(username):
     global df_keranjang, df
 
     cart_user = df_keranjang[df_keranjang["username"] == username]
-
+    kolomtampil = ["nama","harga","jumlah","subtotal"]
     if cart_user.empty:
         print("Keranjang kosong")
         return
+    elif cart_user.empty == False:
+        while True:
+            print("==========Mau checkout yang mana?==========")
+            page_display = cart_user[kolomtampil].reset_index(drop = True)
+            page_display.index +=1
+            print(page_display[["nama","harga","jumlah","subtotal"]].to_markdown(index = True))
+            inputancheckout = input("Ketik angka barang yang ingin di checkout\nketik enter untuk keluar...\n Pilih :")
+            
+            if inputancheckout.isdigit():
+                nomor = int(inputancheckout) - 1
+                if 0 <= nomor < len(cart_user): #username,kode,nama,harga,jumlah,subtotal,status,nama_pengguna
+                    username,kode,nama,harga,jumlah,subtotal,nama_pengguna = cart_user.iloc[nomor]['username'], cart_user.iloc[nomor]['kode'],cart_user.iloc[nomor]['nama'], cart_user.iloc[nomor]['harga'], cart_user.iloc[nomor]['jumlah'], cart_user.iloc[nomor]['subtotal'], cart_user.iloc[nomor]['nama_pengguna']
+                    check = input(f"Apakah kamu ingin membeli '{nama}'? (Ya/Tidak) : ").lower()
+                    if check == "ya":
+                        # Masukkin ke database
+                        new_subs = pd.DataFrame({
+                            'username': [username],
+                            'kode': [kode],
+                            'nama': [nama],
+                            'harga' : [harga],
+                            'jumlah': [jumlah],
+                            'subtotal': [subtotal],
+                            'status': "Belum dikirim",
+                            'nama_pengguna' : [nama_pengguna]
+                        })
+                        subs_updated = pd.concat([dfcart, new_subs], ignore_index=True) #concat, itu untuk menambah baris.
+                                                                            # anggap aja subs yang merupakan data lama, ditambah newsubs yang merupakan databaru.
+                        subs_updated.to_csv('cart.csv', mode='a', index=False, header= False) #Setelah itu append deh ke csv pake to_csv(kayak nge stemple ulang datanya)
+                        for _, row in cart_user.iterrows():
+                            df.loc[df["kode"] == row["kode"], "stok"] -= row["jumlah"]
+                        df.to_csv("daftar_veggiet.csv", index=False)
+                    
+                        print(f"Berhasil melakukan checkout '{nama}'")
+                        break
+                    else:
+                        continue
+                else:
+                    print("Nomor tidak valid")
+            elif inputancheckout == "keluar":
+                print()
+                break
 
-    for _, row in cart_user.iterrows():
-        df.loc[df["kode"] == row["kode"], "stok"] -= row["jumlah"]
+    #for _, row in cart_user.iterrows():
+        #df.loc[df["kode"] == row["kode"], "stok"] -= row["jumlah"]
 
-    df.to_csv("daftar_veggiet.csv", index=False)
+    #df.to_csv("daftar_veggiet.csv", index=False)
 
-    df_keranjang = df_keranjang[df_keranjang["username"] != username]
-    df_keranjang.to_csv("cart.csv", index=False)
-
+    df_keranjang = df_keranjang[df_keranjang['nama'] != nama]
     print("Checkout berhasil!")
 
