@@ -1,29 +1,20 @@
 import pandas as mp
-from transaksi import beli_sayuran
-from transaksi import load_lagi
+from transaksi import beli_sayuran, load_lagi
 
-
-dfProduk = load_lagi()
-open_file = load_lagi()
+dfProduk = mp.read_csv("daftar_veggiet.csv")
+open_file = mp.read_csv('daftar_veggiet.csv')
 open_file_2 = mp.read_csv('akun_user.csv')
 
 
-def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
-    while True:
-        print("\n1. Mencari berdasarkan nama\n2. Mencari Berdasarkan kategori\n3. Kembali")
-        inputanuser = input("Masukkan angka :")
-        kolomTampil = ["nama","stok","harga"]
-        if inputanuser == "1":
-            pilihanuser = input("Masukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
-            printlah(pilihanuser,kolomTampil,'nama') #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
-        elif inputanuser == "2":
-            kategori1 = input("Ketik Sayur/Buah/Kacang/Biji-bijian/Jamur : ").lower()
-            printlah(kategori1,kolomTampil,'kategori')
-        elif inputanuser == "3":
-            print("\n")
-            break
-        else:
-            print("\nMasukkan angka yang benar :>")
+def mencariproduk(role_pengakses): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+    role = str(role_pengakses)
+    pilihanuser = input("Masukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
+    if role == "1":
+        kolomTampil = ["nama","harga","kategori"]
+    elif role == "2":
+        kolomTampil = ["nama","stok","harga","kategori"]
+    printlah(pilihanuser,kolomTampil,"nama") #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+
 
 
 def printlah(nama,listberisiapaaja,tampilin_apah):
@@ -33,8 +24,6 @@ def printlah(nama,listberisiapaaja,tampilin_apah):
         print("\nTidak dapat ditemukan :<")
     elif cari_produk.empty == False:
         print("\n", cari_produk[listberisiapaaja].to_markdown(index=False))
-
-    
 
 def menambah_stok():
     open_file = load_lagi()
@@ -83,6 +72,7 @@ def binarySearch(sorted_list, target_barang):
 
 def tampilkan_sayuran():
     #Banyaknya data per halaman
+    dfProduk = load_lagi()
     perPage = 5
     startPage = 0
     
@@ -113,4 +103,22 @@ def tampilkan_sayuran():
             startPage += perPage
         else:
             print("Terima Kasih")
+            break
+
+def cariKategori():
+    open_file = load_lagi()
+    kolomtampil = ["nama","stok","harga","kategori"]
+    while True:
+        print("=== Kategori Produk ===")
+        print("Sayur")
+        print("Buah")
+        print("Kacang")
+        print("Biji-Bijian")
+        print("Jamur")
+        kategoriuser = input("Masukkan Kategori yang ingin dicari: ").lower()
+        kategori_produk = open_file[(open_file['kategori'] == kategoriuser )]
+        if kategori_produk.empty:
+            print("\n Kategori yang dicari tidak ditemukan")
+        elif kategori_produk.empty == False:
+            printlah(kategoriuser,kolomtampil,"kategori")
             break

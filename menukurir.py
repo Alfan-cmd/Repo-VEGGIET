@@ -9,9 +9,15 @@ df_keranjang = pd.read_csv("keranjang.csv")
 df_cart = pd.read_csv("cart.csv")
 open_file_2 = pd.read_csv('akun_user.csv')
 
+def load_lagi():
+    return pd.read_csv("cart.csv")
+
 def pesanan_satuan():
+    df_cart = load_lagi()
     print("========Pesanan saat ini==========")
-    pesanan = pd.merge(df_cart[["username","nama","jumlah","subtotal"]],open_file_2[["username","alamat"]], on="username")
+    pesanan = pd.merge(df_cart[["nama_pengguna","nama","jumlah","subtotal"]],
+                       open_file_2[["nama_pengguna","alamat"]],
+                       on= "nama_pengguna")
     print(pesanan.to_markdown(index = False))
 
 def pesanan_berlangganan():
