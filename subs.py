@@ -89,7 +89,7 @@ def pesan_subs(username):
         
         #Setting tampilan
         kolomTampil = ["nama", "harga"]
-        print("\n=== Daftar Subscription yang ada ===")
+        print("\n=== Daftar Keranjang ===")
         page[kolomTampil].reset_index(drop=True, inplace=True)  #reset_index adalah kata kerja untuk mereset index dengan ketentuan
                                                                 #(drop atau "hapus", dan inplace atau "Buat baru bang dari 0")
         page_display = page[kolomTampil].copy() #copy() untuk mengcopy si page[kolomtampils] biar tidak terjadi hal yang tidak-tidak
