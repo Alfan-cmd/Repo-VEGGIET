@@ -8,6 +8,8 @@ from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
 from mencari_produk import cariKategori
+from menukurir import pesanan_satuan, pesanan_berlangganan, update_status
+
 #Variable
 def load_user():
     return pd.read_csv("akun_user.csv")
@@ -47,6 +49,8 @@ def menulogin():
             if username:
                 if role == 2:
                     adminmenu(username)
+                elif role == 3:
+                    menukurir(username)
                 else:
                     main_page(username)
             else:
@@ -187,6 +191,21 @@ def adminmenu(current):
             return
         else:
             print("Opsi tidak tersedia")
+            
+def menukurir(current):
+    while True:
+        print("\n=== Menu Kurir ===")
+        print("1. Pesanan Satuan\n2. Pesanan Langganan\n3. Update pesanan\n5. quit")
+        pilihankurir = str(input("Masukkan pilihan: "))
+        if pilihankurir == "1":
+            pesanan_satuan()
+        elif pilihankurir == "2":
+            pesanan_berlangganan()
+        elif pilihankurir == "3":
+            update_status()
+        elif pilihankurir == "5":
+            print("Logout kurir...\n")
+            return
 
 '''
 def append_kefile():
