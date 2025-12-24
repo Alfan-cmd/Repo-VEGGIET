@@ -1,6 +1,9 @@
 import pandas as pd
-df= pd.read_csv("daftar_veggiet.csv")
+from transaksi import load_lagi
+dfawal= pd.read_csv("daftar_veggiet.csv")
 subs = pd.read_csv("daftar_subs.csv")
+df = load_lagi()
+
 
 def tambah_barang():
     inputuser = input("Yakin/Tidak:").lower()

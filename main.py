@@ -4,10 +4,12 @@ import pandas as pd
 #Import File
 from profiluser import profil
 from adminpage import tambah_barang
-from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
+from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran,cariKategori
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
 from mencari_produk import cariKategori
+from menukurir import pesanan_satuan, pesanan_berlangganan, update_status, update_status_langganan
+
 #Variable
 def load_user():
     return pd.read_csv("akun_user.csv")
@@ -47,6 +49,8 @@ def menulogin():
             if username:
                 if role == 2:
                     adminmenu(username)
+                elif role == 3:
+                    menukurir(username)
                 else:
                     main_page(username)
             else:
@@ -140,7 +144,7 @@ def main_page(current):
         if pilih == "1":
             profil(current,df_user)
         elif pilih == "2":
-            mencariproduk()
+            mencariproduk(1)
         elif pilih == "3":
             cariKategori()
         elif pilih == "4":
@@ -181,7 +185,7 @@ def adminmenu(current):
         elif pilih == "3":
             menambah_stok()
         elif pilih == "4":
-            mencariproduk()
+            mencariproduk(2)
         elif pilih == "5":
             menu_subs(current)
         elif pilih == "6":
@@ -189,6 +193,25 @@ def adminmenu(current):
             return
         else:
             print("Opsi tidak tersedia")
+            
+def menukurir(current):
+    while True:
+        print("\n=== Menu Kurir ===")
+        print("1. Melihat Daftar Pesanan Satuan\n2. Melihat Daftar Pesanan Langganan\n3. Update pesanan satuan\n4. Update pesanan langganan\n5. keluar")
+        pilihankurir = str(input("Masukkan pilihan: "))
+        if pilihankurir == "1":
+            pesanan_satuan()
+        elif pilihankurir == "2":
+            pesanan_berlangganan()
+        elif pilihankurir == "3":
+            update_status()
+        elif pilihankurir == "4":
+            update_status_langganan()
+        elif pilihankurir == "5":
+            print("Logout kurir...\n")
+            return
+        else:
+            print("opsi tidak tersedia...")
 
 '''
 def append_kefile():
