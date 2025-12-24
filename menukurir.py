@@ -9,29 +9,16 @@ df_keranjang = pd.read_csv("keranjang.csv")
 df_cart = pd.read_csv("cart.csv")
 open_file_2 = pd.read_csv('akun_user.csv')
 
+def load_lagi():
+    return pd.read_csv("cart.csv")
+
 def pesanan_satuan():
+    df_cart = load_lagi()
     print("========Pesanan saat ini==========")
-    pesanan = pd.merge(df_keranjang[["username","nama","jumlah","subtotal","status"]],open_file_2[["username","alamat"]], on="username")
+    pesanan = pd.merge(df_cart[["nama_pengguna","nama","jumlah","subtotal"]],
+                       open_file_2[["nama_pengguna","alamat"]],
+                       on= "nama_pengguna")
     print(pesanan.to_markdown(index = False))
 
-
-def update_status():
-    username_input = input("Masukkan username pesanan yang ingin diupdate: ")
-    status_baru = input("Masukkan status baru (Menunggu kurir / Dikirim / Selesai): ")
-
-    ditemukan = False
-    for i in range(len(df_keranjang)):
-        if df_keranjang.loc[i, "username"] == username_input:
-            df_keranjang.loc[i, "status"] = status_baru
-            ditemukan = True
-
-    if ditemukan:
-        df_keranjang.to_csv("keranjang.csv", index=False)
-        print("Status pesanan berhasil diperbarui ")
-    else:
-        print("Pesanan tidak ditemukan")
-
 def pesanan_berlangganan():
-    print("=== Pesanan saat ini ===")
-    
-
+    pass

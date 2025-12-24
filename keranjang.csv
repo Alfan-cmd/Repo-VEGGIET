@@ -1,3 +1,1 @@
-username,kode,nama,harga,jumlah,subtotal,status
-user,SAY001,bayam,3000,20,60000,dikirim
-gio,SAY003,sawi hijau,4000,4,16000,dikirim
+username,kode,nama,harga,jumlah,subtotal,status,nama_pengguna

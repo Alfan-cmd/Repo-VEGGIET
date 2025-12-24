@@ -8,7 +8,7 @@ from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
 from mencari_produk import cariKategori
-from menukurir import pesanan_satuan, pesanan_berlangganan, update_status
+from menukurir import pesanan_satuan, pesanan_berlangganan, update_status, update_status_langganan
 
 #Variable
 def load_user():
@@ -195,7 +195,7 @@ def adminmenu(current):
 def menukurir(current):
     while True:
         print("\n=== Menu Kurir ===")
-        print("1. Pesanan Satuan\n2. Pesanan Langganan\n3. Update pesanan\n5. quit")
+        print("1. Melihat Daftar Pesanan Satuan\n2. Melihat Daftar Pesanan Langganan\n3. Update pesanan satuan\n4. Update pesanan langganan\n5. keluar")
         pilihankurir = str(input("Masukkan pilihan: "))
         if pilihankurir == "1":
             pesanan_satuan()
@@ -203,6 +203,8 @@ def menukurir(current):
             pesanan_berlangganan()
         elif pilihankurir == "3":
             update_status()
+        elif pilihankurir == "4":
+            update_status_langganan()
         elif pilihankurir == "5":
             print("Logout kurir...\n")
             return
