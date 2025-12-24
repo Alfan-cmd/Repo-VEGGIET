@@ -9,6 +9,9 @@ dfcart = pd.read_csv("cart.csv")
 def load_lagi():
     return pd.read_csv("daftar_veggiet.csv")
 
+def load_cart():
+    return pd.read_csv("cart.csv")
+
 #Function beli
 def beli_sayuran(username):
     global df
@@ -144,7 +147,7 @@ def lihat_cart(username):
 #Checkout
 def checkout(username):
     global df_keranjang, df
-
+    dfcart = load_cart()
     cart_user = df_keranjang[df_keranjang["username"] == username]
     kolomtampil = ["nama","harga","jumlah","subtotal"]
 
@@ -182,9 +185,9 @@ def checkout(username):
                             'nama_pengguna' : [nama_pengguna]
                         })
 
-                        subs_updated = pd.concat([dfcart, new_subs], ignore_index=True) #concat, itu untuk menambah baris.
+                        dfcart = pd.concat([dfcart, new_subs], ignore_index=True) #concat, itu untuk menambah baris.
                                                                                         #anggap aja subs yang merupakan data lama, ditambah newsubs yang merupakan databaru.
-                        subs_updated.to_csv('cart.csv', mode='a', index=False, header= False) #Setelah itu append deh ke csv pake to_csv(kayak nge stemple ulang datanya)
+                        dfcart.to_csv('cart.csv',index=False) #Setelah itu append deh ke csv pake to_csv(kayak nge stemple ulang datanya)
 
                         for _,row in cart_user.iterrows():
                             df.loc[df["kode"] == row["kode"], "stok"] -= row["jumlah"]
