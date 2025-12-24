@@ -3,3 +3,6 @@ user,SAY001,bayam,3000,5,15000,dikirim,Kresna
 user,SAY002,kangkung,2500,11,27500,dikirim,Kresna
 user,SAY002,kangkung,2500,5,12500,dikirim,Kresna
 irena,SAY001,bayam,3000,3,9000,selesai,Belum di isi
+username,kode,nama,harga,jumlah,subtotal
+user,SAY001,bayam,3000,20,60000
+gio,SAY003,sawi hijau,4000,4,16000

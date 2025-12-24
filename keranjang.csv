@@ -1,1 +1,5 @@
 username,kode,nama,harga,jumlah,subtotal,status,nama_pengguna
+username,kode,nama,harga,jumlah,subtotal
+user,SAY001,bayam,3000,20,60000
+gio,SAY003,sawi hijau,4000,4,16000
+Ohim,SAY005,kembang kol,6500,3,19500
