@@ -4,7 +4,7 @@ import pandas as pd
 #Import File
 from profiluser import profil
 from adminpage import tambah_barang
-from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran
+from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran,cariKategori
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
 from mencari_produk import cariKategori
@@ -77,15 +77,17 @@ def signup():
             continue
         break
         
-    passwordInput = input("Masukkan Password: ")
+    passwordInput = input("Masukkan Password:")
+    alamatInput = input("Masukan Alamat:")
+    notelpInput = input("Masukan Telp:")
     
     userBaru = {
         "username": usernameInput,
         "password": passwordInput,
         "role": 1,
-        "alamat": "Belum di Isi",
+        "alamat": alamatInput,
         "nama_pengguna": "Belum di isi",
-        "no_telephone": "Belum di Isi"
+        "no_telephone": notelpInput
     }
     
     df_user = pd.concat([df_user, pd.DataFrame([userBaru])], ignore_index=True)
@@ -105,12 +107,12 @@ def login():
         print("=== Silahkan Login ===")
         
         #User menginput username dan password
-        usernameInput = input("Masukkan Username: ").lower()
+        usernameInput = input("Masukkan Username: ")
         passwordInput = input("Masukkan Password: ")
 
         #Pengecekan apakah ada username dan password di dalam CSV seperti yang diinput oleh user
         user = df_user[
-            (df_user["username"].str.lower() == usernameInput) &
+            (df_user["username"] == usernameInput) &
             (df_user["password"] == passwordInput)
         ]
         #Jika isi variable user itu tidak kosong maka akan mengecek role
@@ -142,7 +144,7 @@ def main_page(current):
         if pilih == "1":
             profil(current,df_user)
         elif pilih == "2":
-            mencariproduk()
+            mencariproduk(1)
         elif pilih == "3":
             cariKategori()
         elif pilih == "4":
@@ -169,7 +171,7 @@ def adminmenu(current):
         print("\n=== Menu Admin ===")
         print("1. Cek Barang")
         print("2. Tambah Barang")
-        print("3. Tambah Stok")
+        print("3. Perbarui Stok")
         print("4. Search Produk")
         print("5. Subscription")
         print("6. Log Out")
@@ -183,7 +185,7 @@ def adminmenu(current):
         elif pilih == "3":
             menambah_stok()
         elif pilih == "4":
-            mencariproduk()
+            mencariproduk(2)
         elif pilih == "5":
             menu_subs(current)
         elif pilih == "6":
@@ -208,6 +210,8 @@ def menukurir(current):
         elif pilihankurir == "5":
             print("Logout kurir...\n")
             return
+        else:
+            print("opsi tidak tersedia...")
 
 '''
 def append_kefile():
