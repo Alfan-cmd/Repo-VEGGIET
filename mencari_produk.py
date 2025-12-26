@@ -16,22 +16,14 @@ def mencariproduk(role_pengakses): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABAS
         kolomTampil = ["nama","stok","harga","kategori"]
     printlah(pilihanuser,kolomTampil,"nama") #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
 
-
-
 def printlah(nama,listberisiapaaja,tampilin_apah):
     open_file = load_lagi()
     cari_produk = open_file[(open_file[f'{tampilin_apah}'] == nama)]
-def mencariproduk(): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
-    pilihanuser = input("\nMasukkan Nama Sayur/Buah/Biji/Olahan : ").lower()
-    kolomTampil = ["nama","stok","harga"]
-    printlah(pilihanuser,kolomTampil) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
-
-def printlah(nama,listberisiapaaja):
-    cari_produk = open_file[(open_file['nama'] == nama)]
     if cari_produk.empty:
         print("\nTidak dapat ditemukan :<")
     elif cari_produk.empty == False:
-        print("\n", cari_produk.to_string(index= False)) #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABASE
+        print(f"{cari_produk[listberisiapaaja].to_markdown(index = False)}")
+
 def cariKategori():
     print("=== Kategori Produk ===")
     print("Sayur")
@@ -45,8 +37,8 @@ def cariKategori():
     if kategori_produk.empty:
         print("\n Kategori yang dicari tidak ditemukan")
     elif kategori_produk.empty == False:
-        print("\n",kategori_produk.to_string(index = False))
-        print("\n", cari_produk[listberisiapaaja].to_markdown(index=False))
+        kolomTampil = ["nama","stok","harga","kategori"]
+        printlah(kategoriuser,kolomTampil,"kategori")
 
 def menambah_stok():
     open_file = load_lagi()
