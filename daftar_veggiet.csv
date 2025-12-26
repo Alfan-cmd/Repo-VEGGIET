@@ -1,7 +1,7 @@
 kode,nama,stok,harga,kategori
-SAY001,bayam,53,3000,sayur
-SAY002,kangkung,-12,2500,sayur
-SAY003,sawi hijau,4,4000,sayur
+SAY001,bayam,105,3000,sayur
+SAY002,kangkung,30,2500,sayur
+SAY003,sawi hijau,10,4000,sayur
 SAY004,brokoli,13,7000,sayur
 SAY005,kembang kol,10,6500,sayur
 SAY001,bayam,102,3000,sayur
