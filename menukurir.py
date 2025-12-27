@@ -12,10 +12,11 @@ def load_lagi():
 
 def pesanan_satuan():
     df_cart = load_lagi()
+    kolomTampil = ["nama_pengguna","nama","alamat","harga","status"]
     print("========Pesanan saat ini==========")
-    pesanan = pd.merge(df_cart[["username","nama","jumlah","subtotal","status"]],
+    pesanan = pd.merge(df_cart[["username","nama_pengguna","nama","jumlah","subtotal","status"]],
                        open_file_2[["username","alamat"]],
-                       on= "username")
+                       on= "username").drop(columns= "username")
     print(pesanan.to_markdown(index = False))
 
 def update_status():

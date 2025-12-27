@@ -23,6 +23,45 @@ def tambah_barang():
     else:
         return
     
+def hapus_barang():
+    inputuser = input("Yakin ingin menghapus barang? (yakin/tidak): ").lower()
+    
+    if inputuser != "yakin":
+        return
+
+    print("\n=== Hapus Barang ===")
+    print("1. Hapus berdasarkan KODE")
+    print("2. Hapus berdasarkan NAMA")
+
+    pilihan = input("Pilih opsi: ")
+
+    if pilihan == "1":
+        kode = input("Masukkan kode barang: ").upper()
+
+        if kode not in df["kode"].values:
+            print("Kode barang tidak ditemukan")
+            return
+
+        df.drop(df[df["kode"] == kode].index, inplace=True)
+        df.to_csv("daftar_veggiet.csv", index=False)
+
+        print(f"Barang dengan kode {kode} berhasil dihapus")
+
+    elif pilihan == "2":
+        nama = input("Masukkan nama barang: ").lower()
+
+        if nama not in df["nama"].values:
+            print("Nama barang tidak ditemukan")
+            return
+
+        df.drop(df[df["nama"] == nama].index, inplace=True)
+        df.to_csv("daftar_veggiet.csv", index=False)
+
+        print(f"Barang {nama.upper()} berhasil dihapus")
+
+    else:
+        print("Opsi tidak tersedia")
+    
 def tambah_subs():
     inputuser = input("Yakin/Tidak: ").lower()
     if inputuser == "yakin":

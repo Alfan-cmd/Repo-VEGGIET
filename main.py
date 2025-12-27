@@ -3,7 +3,7 @@ import pandas as pd
 
 #Import File
 from profiluser import profil
-from adminpage import tambah_barang
+from adminpage import tambah_barang,hapus_barang
 from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran,cariKategori
 from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
 from subs import menu_subs
@@ -171,10 +171,11 @@ def adminmenu(current):
         print("\n=== Menu Admin ===")
         print("1. Cek Barang")
         print("2. Tambah Barang")
-        print("3. Perbarui Stok")
-        print("4. Search Produk")
-        print("5. Subscription")
-        print("6. Log Out")
+        print("3. Hapus Barang")
+        print("4. Perbarui Stok")
+        print("5. Search Produk")
+        print("6. Subscription")
+        print("7. Log Out")
 
         pilih = input("Pilih Opsi: ")
 
@@ -183,12 +184,14 @@ def adminmenu(current):
         elif pilih == "2":
             tambah_barang()
         elif pilih == "3":
-            menambah_stok()
+            hapus_barang()
         elif pilih == "4":
-            mencariproduk(2)
+            menambah_stok()
         elif pilih == "5":
-            menu_subs(current)
+            mencariproduk(2)
         elif pilih == "6":
+            menu_subs(current)
+        elif pilih == "7":
             print("Logout admin...\n")
             return
         else:

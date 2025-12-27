@@ -4,11 +4,6 @@ SAY002,kangkung,30,2500,sayur
 SAY003,sawi hijau,10,4000,sayur
 SAY004,brokoli,13,7000,sayur
 SAY005,kembang kol,10,6500,sayur
-SAY001,bayam,102,3000,sayur
-SAY002,kangkung,30,2500,sayur
-SAY003,sawi hijau,16,4000,sayur
-SAY004,brokoli,15,7000,sayur
-SAY005,kembang kol,21,6500,sayur
 SAY006,wortel,40,3000,sayur
 SAY007,buncis,18,5000,sayur
 SAY008,kol,22,3500,sayur
@@ -29,6 +24,8 @@ BUA007,melon,9,16000,buah
 BUA008,alpukat,18,14000,buah
 BUA009,anggur,25,20000,buah
 BUA010,stroberi,10,25000,buah
+BUA011,Kiwi,10,10000,buah
+BUA012,buah Naga,10,25000,buah
 BIJ001,beras,100,12000,biji-bijian
 BIJ002,gandum,60,10000,biji-bijian
 BIJ003,jagung,45,8000,biji-bijian
@@ -39,9 +36,14 @@ KAC001,kacang merah,25,12000,kacang
 KAC002,kacang tanah,40,10000,kacang
 KAC003,kacang kedelai,50,9000,kacang
 KAC004,kacang polong,22,15000,kacang
-KAC005,almond,15,30000,kacang
-KAC006,mete,12,28000,kacang
-KAC007,pistachio,10,32000,kacang
+KAC005,kacang almond,15,30000,kacang
+KAC006,kacang mete,12,28000,kacang
+KAC007,kacang pistachio,10,32000,kacang
+KAC008,kacang hijau,35,11000,kacang
+KAC009,kacang hitam,20,14000,kacang
+KAC010,kacang kecan,28,13000,kacang
+KAC011,kacang arab,18,16000,kacang
+KAC012,kacang hazelnut,15,17000,kacang
 OLA001,tahu,50,4000,olahan
 OLA002,tempe,45,5000,olahan
 OLA003,susu kedelai,30,9000,olahan
@@ -54,3 +56,11 @@ JAM001,jamur tiram,25,6000,jamur
 JAM002,jamur kancing,30,7000,jamur
 JAM003,jamur shitake,12,10000,jamur
 JAM004,jamur enoki,50,8000,jamur
+JAM005,jamur kuping,20,7500,jamur
+JAM006,jamur merang,18,9000,jamur
+JAM007,jamur portobello,15,12000,jamur
+JAM008,jamur maitake,10,15000,jamur
+JAM009,jamur shimeji,22,8500,jamur
+JAM010,jamur porcini,8,20000,jamur
+JAM011,jamur chanterelle,7,22000,jamur
+JAM012,jamur tiram putih,22,6000,jamur

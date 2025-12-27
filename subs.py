@@ -158,3 +158,6 @@ def cek_subs(username):
         else:
             print()
             break
+
+def hapus_sub():
+    pass
