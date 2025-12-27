@@ -39,7 +39,7 @@ def cariKategori():
     elif kategori_produk.empty == False:
         kolomTampil = ["nama","stok","harga","kategori"]
         printlah(kategoriuser,kolomTampil,"kategori")
-
+"""
 def menambah_stok():
     open_file = load_lagi()
     while True:
@@ -66,19 +66,20 @@ def menambah_stok():
                 print("Sudah ditambah nih :>")
                 printlah(nama_barang,kolomtampil,'nama')
                 break
+"""
 
 def menambah_stok():
     while True:
         kolomtampil = ["nama","stok"]
-        nama_barang = input("Masukkan nama barang : ").lower()
+        nama_barang = input("Masukkan nama barang : ").lower()      
         if open_file.loc[open_file["nama"]==nama_barang].empty == True:
             print("Barang ini tidak tersedia")
         elif open_file.loc[open_file["nama"]==nama_barang].empty == False:
-            printlah(nama_barang,kolomtampil)
-            inputubahstok = input("(Menambah/Mengurangi):").lower()
+            printlah(nama_barang,kolomtampil,'nama')
+            inputubahstok = input("(Menambah/Mengurangi):").lower()       
             if inputubahstok == "menambah":
                 while True:
-                    jumlah_ditambah = input("Masukkan mau menambah berapa stok : ")
+                    jumlah_ditambah = input("Masukkan mau menambah ber apa stok : ")
                     if jumlah_ditambah.isdigit():
                         jumlah_ditambah = int(jumlah_ditambah)
                         if jumlah_ditambah >= 0:
@@ -90,7 +91,7 @@ def menambah_stok():
                     else:
                         print("Mohon masukkan angka numerik :>")
                 print("Sudah ditambah nih :>")
-                printlah(nama_barang,kolomtampil)
+                printlah(nama_barang,kolomtampil,kategoritambah)
                 break
             
             elif inputubahstok == "mengurangi":
@@ -104,7 +105,7 @@ def menambah_stok():
                         print("Mohon masukkan angka positif :>")
                 else:
                     print("Mohon masukkan angka numerik :>")
-                printlah(nama_barang,kolomtampil)
+                printlah(nama_barang,kolomtampil,'nama')
                 break
 
 """
