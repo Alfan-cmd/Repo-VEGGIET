@@ -1,4 +1,7 @@
 kode,nama,harga,kategori
-SUB001,Fresh Bowl,699000,salad
-SUB002,Veggie Mix,699000,salad
-SUB003,Mixed Been Salad,699000,salad
+SUB001,Paket Sayur Hemat,129000,sayur
+SUB002,Paket Sayur Keluarga,199000,sayur
+SUB003,Paket Sayur Lengkap,249000,sayur
+SUB004,Paket Sayur Sehat,269000,sayur
+SUB005,Paket Sayur Organik,299000,sayur
+SUB006,Paket Sayur Premium,319000,sayur
