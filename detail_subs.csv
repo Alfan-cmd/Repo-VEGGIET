@@ -1,0 +1,7 @@
+kode,deskripsi,isi_sayur,berat_total,frekuensi,durasi
+SUB001,Paket Sayur Hemat,"Wortel,Bayam,Kentang,Tomat",3 kg,3x seminggu,30 hari
+SUB002,Paket Sayur Keluarga,"Wortel,Brokoli,Bayam,Kubis",5 kg,3x seminggu,30 hari
+SUB003,Paket Sayur Lengkap,"Wortel,Bayam,Brokoli,Buncis,Tomat",7 kg,5x seminggu,30 hari
+SUB004,Paket Sayur Sehat,"Bayam,Kangkung,Sawi,Buncis",7 kg,5x seminggu,30 hari
+SUB005,Paket Sayur Organik,"Wortel,Brokoli,Selada,Tomat",10 kg,7x seminggu,30 hari
+SUB006,Paket Sayur Premium,"Semua jenis sayur pilihan",12 kg,7x seminggu,30 hari
