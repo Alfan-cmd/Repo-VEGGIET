@@ -1,5 +1,6 @@
 import pandas as pd
 from adminpage import tambah_subs
+from transaksi import id_pembayarann,id_pesanann
 import time
 
 
@@ -157,11 +158,30 @@ def pesan_subs(username):
 
                 if check == "ya":
                     valid_timestamp = int(time.time()) + (30 * 24 * 60 * 60)
+                    while True:
+                            metode_pembayaran = input("Pilih Metode Pembayaran:\n1. QRIS\n2. Apple Pay\n3. Master Card\nPilih : ")
+                            if metode_pembayaran == "1":
+                                metode = "QRIS"
+                                break
+                            elif metode_pembayaran == "2":
+                                metode = "Apple Pay"
+                                break
+                            elif metode_pembayaran == "3":
+                                metode = "Master Card"
+                                break
+                            else:
+                                print("Masukkan Pilihan Yang Tepat :>")
+                        
+                    id_pesanan = id_pesanann(subs)
+                    id_pembayaran = id_pembayarann(subs)
 
                     new_subs = pd.DataFrame({
                         'username': [username],
                         'kode': [kode],
-                        'valid': [valid_timestamp]
+                        'valid': [valid_timestamp],
+                        'metode_pembayaran' : [metode],
+                        'id_pesanan' : [id_pesanan],
+                        'id_pembayaran' :[id_pembayaran]
                     })
 
                     subs = pd.concat([subs, new_subs], ignore_index=True)

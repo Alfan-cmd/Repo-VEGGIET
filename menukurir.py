@@ -9,6 +9,8 @@ df_langganan = pd.read_csv('subs.csv',dtype={"status": "string"})
 
 def load_lagi():
     return pd.read_csv("cart.csv")
+def load_langganan():
+    return pd.read_csv("subs.csv")
 
 def pesanan_satuan():
     df_cart = load_lagi()
@@ -36,6 +38,7 @@ def update_status():
         print("Pesanan tidak ditemukan")
 
 def pesanan_berlangganan():
+    df_langganan = load_langganan()
     print("=== Pesanan saat ini ===")
 
     merge1 = pd.merge(
@@ -57,7 +60,7 @@ def pesanan_berlangganan():
     for i in range(len(merge_final)): 
         if merge_final.loc[i, "status"] == "<NA>": 
             merge_final.loc[i, "status"] = "Belum dikirim"
-    hasil = merge_final[["username", "nama", "harga", "alamat", "status"]]
+    hasil = merge_final[["username", "nama", "harga", "alamat", "status","metode_pembayaran"]]
     print(hasil.to_markdown(index=False))
 
 

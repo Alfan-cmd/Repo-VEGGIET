@@ -188,8 +188,8 @@ def checkout(username):
                             else:
                                 print("Masukkan Pilihan Yang Tepat :>")
                         
-                        id_pesanan = id_pesanann()
-                        id_pembayaran = id_pembayarann()
+                        id_pesanan = id_pesanann(dfcart)
+                        id_pembayaran = id_pembayarann(dfcart)
 
                         new_subs = pd.DataFrame({
                             'username': [username],
@@ -232,20 +232,20 @@ def invoice(username):
     invoice = invoice_cart[(invoice_cart[f'username'] == username)]
     print(f"{invoice[["username","nama_pengguna","metode_pembayaran","subtotal","id_pembayaran"]].to_markdown(index = False)}")
 
-def id_pesanann():
+def id_pesanann(csv):
     while True:
         angka = random.randint(100000,999999)
         id = (f"#{angka}")
-        if dfcart[dfcart['id_pesanan'] == id].empty:
+        if csv[csv['id_pesanan'] == id].empty:
             return id
         else:
             print()
 
-def id_pembayarann():
+def id_pembayarann(csv):
     while True:
         angka = random.randint(100000,999999)
         id = (f"${angka}")
-        if dfcart[dfcart['id_pembayaran'] == id].empty:
+        if csv[csv['id_pembayaran'] == id].empty:
             return id
         else:
             print()
