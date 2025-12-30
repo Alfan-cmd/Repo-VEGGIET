@@ -5,7 +5,7 @@ import pandas as pd
 from profiluser import profil
 from adminpage import tambah_barang
 from mencari_produk import menambah_stok, mencariproduk, tampilkan_sayuran,cariKategori
-from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout
+from transaksi import beli_sayuran, pesan_sayuran, lihat_cart, checkout,invoice
 from subs import menu_subs
 from mencari_produk import cariKategori
 from menukurir import pesanan_satuan, pesanan_berlangganan, update_status, update_status_langganan
@@ -136,7 +136,8 @@ def main_page(current):
         print("6. Lihat Keranjang")
         print("7. Checkout")
         print("8. Subscription")
-        print("9. Log Out")
+        print("9. Lihat Invoice")
+        print("10. Log Out")
 
         pilih = input("Pilih Opsi: ")
         print()
@@ -158,6 +159,8 @@ def main_page(current):
         elif pilih == "8":
             menu_subs(current)
         elif pilih == "9":
+            invoice(current)
+        elif pilih == "10":
             print("Logout...\n")
             return
         else:

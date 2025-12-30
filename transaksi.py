@@ -1,5 +1,5 @@
 import pandas as pd
-
+import random
 #Membaca data CSV
 dfawal = pd.read_csv("daftar_veggiet.csv")
 dfUser = pd.read_csv("akun_user.csv")
@@ -174,6 +174,23 @@ def checkout(username):
 
                     if check == "ya":
                         # Masukkin ke database
+                        while True:
+                            metode_pembayaran = input("Pilih Metode Pembayaran:\n1. QRIS\n2. Apple Pay\n3. Master Card\nPilih : ")
+                            if metode_pembayaran == "1":
+                                metode = "QRIS"
+                                break
+                            elif metode_pembayaran == "2":
+                                metode = "Apple Pay"
+                                break
+                            elif metode_pembayaran == "3":
+                                metode = "Master Card"
+                                break
+                            else:
+                                print("Masukkan Pilihan Yang Tepat :>")
+                        
+                        id_pesanan = id_pesanann()
+                        id_pembayaran = id_pembayarann()
+
                         new_subs = pd.DataFrame({
                             'username': [username],
                             'kode': [kode],
@@ -182,7 +199,11 @@ def checkout(username):
                             'jumlah': [jumlah],
                             'subtotal': [subtotal],
                             'status': "Belum dikirim",
-                            'nama_pengguna' : [nama_pengguna]
+                            'nama_pengguna' : [nama_pengguna],
+                            'metode_pembayaran' : [metode],
+                            'id_pembayaran': [id_pembayaran],
+                            'id_pesanan' : [id_pesanan]
+
                         })
 
                         dfcart = pd.concat([dfcart, new_subs], ignore_index=True) #concat, itu untuk menambah baris.
@@ -190,8 +211,8 @@ def checkout(username):
                         dfcart.to_csv('cart.csv',index=False) #Setelah itu append deh ke csv pake to_csv(kayak nge stemple ulang datanya)
 
                         for _,row in cart_user.iterrows():
-                            df.loc[df["kode"] == row["kode"], "stok"] -= row["jumlah"]
-                        df.to_csv("daftar_veggiet.csv", index=False)
+                            dfawal.loc[dfawal["kode"] == row["kode"], "stok"] -= row["jumlah"]
+                        dfawal.to_csv("daftar_veggiet.csv", index=False)
 
                         df_keranjang = df_keranjang[df_keranjang['nama'] != nama] #Update keranjang dengan index barang yang dipilih hilang
                         df_keranjang.to_csv("keranjang.csv", index = False) #Update/dikembalikan ke csv
@@ -206,8 +227,26 @@ def checkout(username):
                 print()
                 break
 
-    #for _, row in cart_user.iterrows():
-        #df.loc[df["kode"] == row["kode"], "stok"] -= row["jumlah"]
+def invoice(username):
+    invoice_cart = load_cart()
+    invoice = invoice_cart[(invoice_cart[f'username'] == username)]
+    print(f"{invoice[["username","nama_pengguna","metode_pembayaran","subtotal","id_pembayaran"]].to_markdown(index = False)}")
 
-    #df.to_csv("daftar_veggiet.csv", index=False)
+def id_pesanann():
+    while True:
+        angka = random.randint(100000,999999)
+        id = (f"#{angka}")
+        if dfcart[dfcart['id_pesanan'] == id].empty:
+            return id
+        else:
+            print()
 
+def id_pembayarann():
+    while True:
+        angka = random.randint(100000,999999)
+        id = (f"${angka}")
+        if dfcart[dfcart['id_pembayaran'] == id].empty:
+            return id
+        else:
+            print()
+            continue
