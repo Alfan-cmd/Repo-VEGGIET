@@ -91,7 +91,7 @@ def menambah_stok():
                     else:
                         print("Mohon masukkan angka numerik :>")
                 print("Sudah ditambah nih :>")
-                printlah(nama_barang,kolomtampil,kategoritambah)
+                printlah(nama_barang,kolomtampil,'nama')
                 break
             
             elif inputubahstok == "mengurangi":

@@ -1,8 +1,3 @@
-username,kode,valid,status
-user,SUB001,1768979373,
-irena,SUB001,1769090490,menunggu kurir
-fufufafa,SUB001,1769098471,dikirim
-username,kode,valid,
-user,SUB001,1768979373,
-Ohim,SUB001,1768922802,
-Alfan,SUB001,1769610287,
+username,kode,valid,status,metode_pembayaran,id_pembayaran,id_pesanan
+user,SUB001,1769682178,,QRIS,$421947,#660733
+user,SUB005,1769682517,,Apple Pay,$526871,#776856
