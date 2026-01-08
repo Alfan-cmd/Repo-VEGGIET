@@ -121,11 +121,8 @@ def pesan_sayuran(username):
             startPage += perPage
         elif userInput == "keranjang":
             beli_sayuran(username)
-        elif userInput == "keluar":
-            print("Terima Kasih")
-            break
         else:
-            print("Opsi tidak tersedia")
+            break
             
 
 

@@ -18,7 +18,7 @@ def mencariproduk(role_pengakses): #PAKE YANG INI BIAR LANGSUNG NYARI DI DATABAS
 
 def printlah(nama,listberisiapaaja,tampilin_apah):
     open_file = load_lagi()
-    cari_produk = open_file[(open_file[f'{tampilin_apah}'] == nama)]
+    cari_produk = open_file[open_file[f'{tampilin_apah}'] == nama]
     if cari_produk.empty:
         print("\nTidak dapat ditemukan :<")
     elif cari_produk.empty == False:
